@@ -1,0 +1,15 @@
+<p-dialog class="login-modal" header="Login" [modal]="true" [(visible)]="visible" [draggable]="false" (onHide)="closed.emit()">
+    <form [formGroup]="loginForm" class="login-form">
+        <p-floatLabel class="login-form_field">
+            <input pInputText id="email" formControlName="email" />
+            <label for="email">E-mail</label>
+        </p-floatLabel>
+
+        <p-floatLabel class="login-form_field">
+            <p-password id="senha" formControlName="senha" [toggleMask]="true" [feedback]="false" />
+            <label for="senha">Senha</label>
+        </p-floatLabel>
+
+        <p-button class="login-form_button" label="Entrar" (onClick)="login()"/>
+    </form>
+</p-dialog>

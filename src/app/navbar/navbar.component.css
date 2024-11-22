@@ -1,0 +1,18 @@
+.menu_item--margin {
+    margin-left: 0.5rem;
+}
+
+:host ::ng-deep p-menubarsub {
+    width: 100%;
+}
+
+.title-link_text {
+    font-size: 1rem;
+    margin-right: 1rem;
+    margin-left: 1rem;
+}
+
+.title-link, .title-link:visited, .title-link:hover, .title-link:active {
+    color: inherit;
+    text-decoration: none;
+}

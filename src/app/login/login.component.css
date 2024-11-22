@@ -1,0 +1,15 @@
+.login-form {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-form_field {
+    margin: 1rem;
+}
+
+.login-form_button {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+}

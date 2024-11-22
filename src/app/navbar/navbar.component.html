@@ -1,0 +1,29 @@
+<p-menubar [model]="items">
+    <ng-template pTemplate="start">
+        <a class="title-link" routerLink="/">
+            <h1 class="title-link_text">Sigae</h1>
+        </a>
+    </ng-template>
+    
+    <ng-template pTemplate="item" let-item>
+        <ng-container *ngIf="item.route; else noRouteTemplate">
+            <a [routerLink]="item.route" class="p-menuitem-link">
+                <span [class]="item.icon"></span>
+                <span class="menu_item--margin">{{ item.label }}</span>
+            </a>
+        </ng-container>
+        <ng-template #noRouteTemplate>
+            <div class="p-menuitem-link">
+                <span [class]="item.icon"></span>
+                <span class="menu_item--margin">{{ item.label }}</span>
+            </div>
+        </ng-template>
+    </ng-template>
+    
+    <!-- <ng-template pTemplate="end">
+        <a href="#" (click)="logout()" class="p-menuitem-link">
+            <span class="pi pi-power-off"></span>
+            <span class="menu_item--margin">Quit</span>
+        </a>
+    </ng-template> -->
+</p-menubar>
