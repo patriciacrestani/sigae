@@ -1,27 +1,61 @@
 # Sigae
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.12.
+Este projeto se trata de uma aplicação para registro de planos de melhoria de diversos tipos, ou para diversos propósitos e áreas. Antes da criação do plano de melhoria, é necessário implementar uma agenda que gerencie os encontros dedicados à discussão dos objetivos e ações de melhoria, seja de forma presencial ou remota.
 
-## Development server
+## Tecnologias
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- Angular 18
+- RXJS
+- PrimeNg
+- CAPTCHA
 
-## Code scaffolding
+## Requisitos
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Ter uma interface intuitiva e elegante
+- Utilização de técnicas de gerenciamento de estado
+- Implementação de guarda de rota
+- Páginas responsivas, otimizadas para dispositivos móveis e desktops
+- Implementação de testes unitários
+- Criação de componentes reutilizáveis com foco em modularidade e manutenibilidade
 
-## Build
+## Funcionalidades
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+1. Tela de Login do usuário:
 
-## Running unit tests
+   - Implementar CAPTCHA
+   - Autenticação multifator (fake)
+   - Opção de recuperação de senha (fake)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+2. Home Page:
 
-## Running end-to-end tests
+   - Resumo com:
+     - Total de planos de melhoria criados
+     - Total de usuários cadastrados
+     - Agenda do usuário, com eventos que contêm:
+       - Assunto
+       - Título
+       - Participantes
+       - Descrição/Pauta do evento
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+3. Menu de navegação para as seguintes telas:
+   - Cadastro de Pessoas:
+     - Campos para CPF, nome, e-mail e endereço
+   - Cadastro de Eventos para a Agenda:
+     - Interface similar ao Outlook
+   - Cadastro dos Planos de Melhoria:
+     - Estrutura multinível contendo:
+       - Cabeçalho do plano com título, descrição e datas de início e término, além de um status que indica o andamento (em andamento ou concluído, baseado no status das ações)
+       - Lista de objetivos do plano
+       - Lista de ações para atender os objetivos, incluindo:
+         - Descrição da ação
+         - Responsáveis pela ação
+         - Datas de início e término previstas
+         - Datas de início e término realizadas
+         - Status da ação (não iniciado, em andamento, concluído) com base nas datas realizadas
 
-## Further help
+## Uso
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+1. Clone este repositório
+2. Execute `npm install` para instalar todos os pacotes desta aplicação
+3. Execute `ng serve` para rodar um servidor de desenvolvimento deste aplicativo
+4. Navegue até http://localhost:4200/ no seu navegador para abrir o servidor de desenvolvimento

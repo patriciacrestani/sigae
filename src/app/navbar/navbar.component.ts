@@ -19,28 +19,28 @@ export class NavbarComponent {
       label: 'Pessoas',
       icon: 'pi pi-user',
       route: '/pessoas',
-      visible: false
+      visible: true
     },
     
     {
       label: 'Agenda',
       icon: 'pi pi-calendar',
       route: '/agenda',
-      visible: false
+      visible: true
     },
     
     {
       label: 'Plano de ação',
       icon: 'pi pi-copy',
       route: '/plano-acao',
-      visible: false
+      visible: true
     },
 
     {
       label: 'Quit',
       icon: 'pi pi-power-off',
       style: { "margin-left": 'auto' },
-      visible: false,
+      visible: true,
       command: () => {
         this.logout();
       }
@@ -49,7 +49,7 @@ export class NavbarComponent {
     {
       label: 'Login',
       style: { "margin-left": 'auto' },
-      visible: true,
+      visible: false,
       command: () => {
         this.injectLogin();
       }

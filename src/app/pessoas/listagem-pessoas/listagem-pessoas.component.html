@@ -1,1 +1,47 @@
-<p>listagem-pessoas works!</p>
+<a routerLink="/pessoas/cadastro" class="p-button font-bold adicionar-pessoa_button">
+    Adicionar
+</a>
+
+<p-table [value]="pessoas" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="caption">
+        <div>
+            Pessoas
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>E-mail</th>
+            <th>Escola</th>
+            <th>Endereço</th>
+            <th></th>
+        </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-pessoa>
+        <tr>
+            <td>{{ pessoa.nome }}</td>
+            <td>{{ pessoa.cpf }}</td>
+            <td>{{ pessoa.contato.email }}</td>
+            <td>{{ pessoa.escola.nome }}</td>
+            <td>{{ pessoa.endereco.logradouro }}</td>
+            <td>
+                <p-button 
+                    icon="pi pi-pencil" 
+                    class="mr-2" 
+                    [rounded]="true"
+                    [text]="true" 
+                    [plain]="true"
+                    (onClick)="editarPessoa()" />
+                <p-button 
+                    icon="pi pi-trash" 
+                    [text]="true" 
+                    [rounded]="true"
+                    [plain]="true"
+                    (onClick)="excluirPessoa()" />
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
