@@ -1,0 +1,11 @@
+.cadastro-pessoa{ 
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.cadastro-pessoa_buttons {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+}

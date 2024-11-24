@@ -1,1 +1,57 @@
-<p>dados-cadastrais-pessoa works!</p>
+<form [formGroup]="formPessoa">
+    <div class="form-row">
+        <p-floatLabel class="p-fluid" style="width: 100%;">
+            <input 
+                pInputText 
+                id="nome" 
+                formControlName="nome" 
+                [placeholder]="nomePlaceholder"
+                [minlength]="padraoMinLength"
+                [maxlength]="padraoMaxLength" />
+            <label for="nome">Nome</label>
+        </p-floatLabel>
+
+        <p-floatLabel class="p-fluid" style="width: 100%;">
+            <input 
+                pInputText 
+                id="nomeSocial" 
+                formControlName="nomeSocial"  
+                [placeholder]="nomeSocialPlaceholder"
+                [minlength]="padraoMinLength"
+                [maxlength]="padraoMaxLength" />
+            <label for="nomeSocial">Nome social</label>
+        </p-floatLabel>
+    </div>
+
+    <div class="form-row form-row--margin">
+        <p-floatLabel class="p-fluid" style="width: 100%;">
+            <p-inputMask 
+                [mask]="cpfMask"
+                [maxlength]="cpfLength"
+                id="cpf"
+                formControlName="cpf"
+                [placeholder]="cpfPlaceholder" />
+            <label for="cpf">CPF</label>
+        </p-floatLabel>
+
+        <p-floatLabel class="p-fluid" style="width: 100%;">
+            <p-inputMask 
+                [mask]="cnpjMask"
+                [maxlength]="cnpjLength"
+                id="cnpj"
+                formControlName="cnpj"
+                [placeholder]="cnpjPlaceholder" />
+            <label for="cnpj">CNPJ</label>
+        </p-floatLabel>
+
+        <p-floatLabel class="p-fluid" style="width: 100%;">
+            <p-dropdown 
+                [options]="escolas" 
+                formControlName="escola" 
+                optionLabel="nome"
+                id="escola"  
+                [placeholder]="escolaPlaceholder" />
+            <label for="escola">Escola</label>
+        </p-floatLabel>
+    </div>
+</form>

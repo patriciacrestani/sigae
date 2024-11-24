@@ -5,19 +5,38 @@ import { CadastroPessoaComponent } from './cadastro/cadastro-pessoa/cadastro-pes
 import { DadosCadastraisPessoaComponent } from './cadastro/dados-cadastrais-pessoa/dados-cadastrais-pessoa.component';
 import { DadosContatoPessoaComponent } from './cadastro/dados-contato-pessoa/dados-contato-pessoa.component';
 import { DadosEnderecoPessoaComponent } from './cadastro/dados-endereco-pessoa/dados-endereco-pessoa.component';
-
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { RouterModule } from '@angular/router';
+import { TableModule } from 'primeng/table';
+import { ListagemPessoasComponent } from './listagem-pessoas/listagem-pessoas.component';
+import { StepperModule } from 'primeng/stepper';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputMaskModule } from 'primeng/inputmask';
 
 @NgModule({
   declarations: [
     CadastroPessoaComponent,
     DadosCadastraisPessoaComponent,
     DadosContatoPessoaComponent,
-    DadosEnderecoPessoaComponent
+    DadosEnderecoPessoaComponent,
+    ListagemPessoasComponent
   ],
   imports: [
     CommonModule,
-    PessoasRoutingModule
+    PessoasRoutingModule,
+    FormsModule, 
+    ReactiveFormsModule,
+    InputTextModule,
+    ButtonModule,
+    RouterModule,
+    FloatLabelModule,
+    TableModule,
+    StepperModule,
+    DropdownModule,
+    InputMaskModule
   ]
 })
 export class PessoasModule { }

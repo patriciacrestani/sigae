@@ -1,1 +1,54 @@
-<p>dados-endereco-pessoa works!</p>
+<form [formGroup]="enderecoForm">
+    <div class="form-row">
+        <p-floatLabel class="p-fluid" style="width: 100%;">
+            <input 
+                pInputText 
+                id="logradouro" 
+                [placeholder]="logradouroPlaceholder"
+                [maxlength]="padraoMaxLength"
+                formControlName="logradouro" />
+            <label for="logradouro">Logradouro</label>
+        </p-floatLabel>
+
+        <p-floatLabel class="p-fluid" style="width: 100%;">
+            <input 
+                pInputText 
+                id="cidade" 
+                [placeholder]="cidadePlaceholder"
+                [maxlength]="curtoMaxLength"
+                formControlName="cidade" />
+            <label for="cidade">Cidade</label>
+        </p-floatLabel>
+    </div>
+
+    <div class="form-row form-row--margin">
+        <p-floatLabel class="p-fluid" style="width: 100%;">
+            <p-inputMask 
+                [mask]="cepMask"
+                id="cep"
+                formControlName="cep"
+                [maxlength]="cepLength"
+                [placeholder]="cepPlaceholder" />
+            <label for="cep">CEP</label>
+        </p-floatLabel>
+
+        <p-floatLabel class="p-fluid" style="width: 100%;">
+            <input 
+                pInputText 
+                id="estado" 
+                [placeholder]="estadoPlaceholder"
+                [maxlength]="curtoMaxLength"
+                formControlName="estado" />
+            <label for="estado">Estado</label>
+        </p-floatLabel>
+
+        <p-floatLabel class="p-fluid" style="width: 100%;">
+            <p-dropdown 
+                [options]="paises" 
+                formControlName="pais" 
+                id="pais"  
+                [placeholder]="paisPlaceholder" />
+            <label for="pais">País</label>
+        </p-floatLabel>
+    </div>
+</form>
