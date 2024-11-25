@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CommonModule } from '@angular/common';
+import { PrimeNGConfig } from 'primeng/api';
 
 @Component({
   selector: 'app-root',
@@ -12,4 +13,6 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent {
   title = 'sigae';
+  
+  constructor(private primengConfig: PrimeNGConfig) {}
 }

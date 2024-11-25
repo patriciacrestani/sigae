@@ -1,1 +1,18 @@
-<p>agenda works!</p>
+<div class="calendar">
+    <div #calendarSidebar class="calendar_sidebar">
+
+        <a routerLink="/pessoas/cadastro" class="p-button font-bold calendar_sidebar_button">
+            Adicionar evento <i class="pi pi-plus-circle"></i>
+        </a>
+
+        <p-calendar 
+            class="calendar_sidebar_input"
+            [(ngModel)]="dataSelecionada" 
+            [inline]="true" 
+            [showWeek]="false"  />
+    </div>
+
+    <div class="calendar_container">
+        <full-calendar class="calendar_preview" [options]="calendarOptions"></full-calendar>
+    </div>
+</div>
