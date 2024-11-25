@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MenuItem } from 'primeng/api';
 
 class EtapasCadastroPessoaEnum {
   static DadosCadastrais: number = 0;
@@ -14,10 +15,19 @@ class EtapasCadastroPessoaEnum {
   styleUrl: './cadastro-pessoa.component.css'
 })
 export class CadastroPessoaComponent {
-  etapas: string[] = [
-    "Dados cadastrais",
-    "Dados de contato",
-    "Dados de endereço"
+  etapas: MenuItem[] = [
+    {
+      label: 'Dados cadastrais',
+      routerLink: 'dados-cadastrais'
+    },
+    {
+        label: 'Dados de contato',
+        routerLink: 'dados-contato'
+    },
+    {
+        label: 'Dados de endereço',
+        routerLink: 'dados-endereco'
+    },
   ];
 
   constructor(

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Escola } from '../../../models/escola';
 import { ESCOLAS } from '../../../mocks/escolas-mock';
 import { formFieldLimits } from '../../../config/formConfig';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-dados-cadastrais-pessoa',
@@ -32,7 +33,9 @@ export class DadosCadastraisPessoaComponent {
   escolas: Escola[] = ESCOLAS;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.createForm();
   }
@@ -45,5 +48,9 @@ export class DadosCadastraisPessoaComponent {
       cnpj: ['', Validators.compose([Validators.required, Validators.maxLength(this.cnpjLength)])],
       escola: ['', Validators.required]
     });
+  }
+
+  avancar() {
+    this.router.navigate(['..', 'dados-contato'], { relativeTo: this.route });
   }
 }

@@ -1,5 +1,9 @@
 <div class="cadastro-pessoa">
-    <p-stepper (activeStepChange)="proximaEtapa($event)">
+    
+    <p-steps [model]="etapas" [readonly]="false" />
+    <router-outlet></router-outlet>
+
+    <!-- <p-stepper (activeStepChange)="proximaEtapa($event)">
         <ng-container *ngFor="let etapa of etapas">
             <p-stepperPanel [header]="etapa">
                 <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback" let-index="index">
@@ -20,5 +24,5 @@
                 </ng-template>
             </p-stepperPanel>
         </ng-container>
-    </p-stepper>
+    </p-stepper> -->
 </div>

@@ -12,9 +12,9 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import { RouterModule } from '@angular/router';
 import { TableModule } from 'primeng/table';
 import { ListagemPessoasComponent } from './listagem-pessoas/listagem-pessoas.component';
-import { StepperModule } from 'primeng/stepper';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputMaskModule } from 'primeng/inputmask';
+import { StepsModule } from 'primeng/steps';
 
 @NgModule({
   declarations: [
@@ -34,9 +34,9 @@ import { InputMaskModule } from 'primeng/inputmask';
     RouterModule,
     FloatLabelModule,
     TableModule,
-    StepperModule,
     DropdownModule,
-    InputMaskModule
+    InputMaskModule,
+    StepsModule
   ]
 })
 export class PessoasModule { }
