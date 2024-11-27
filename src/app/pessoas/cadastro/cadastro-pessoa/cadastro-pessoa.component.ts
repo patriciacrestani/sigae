@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { MenuItem } from 'primeng/api';
-
-class EtapasCadastroPessoaEnum {
-  static DadosCadastrais: number = 0;
-  static DadosContato: number = 1;
-  static DadosEndereco: number = 2;
-}
+import { PessoasService } from '../../pessoas.service';
 
 @Component({
   selector: 'app-cadastro-pessoa',
@@ -31,20 +26,17 @@ export class CadastroPessoaComponent {
   ];
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute
-  ) { }
+    private route: ActivatedRoute,
+    private pessoasService: PessoasService
+  ) {
+    this.checkRouteId();
+  }
 
-  proximaEtapa(novaEtapa: number) {
-    switch(novaEtapa) {
-      case EtapasCadastroPessoaEnum.DadosCadastrais:
-        return this.router.navigate(['dados-cadastrais'], { relativeTo: this.route });
-      case EtapasCadastroPessoaEnum.DadosContato:
-        return this.router.navigate(['dados-contato'], { relativeTo: this.route });
-      case EtapasCadastroPessoaEnum.DadosEndereco:
-        return this.router.navigate(['dados-endereco'], { relativeTo: this.route });
-      default:
-        return;
-    }
+  checkRouteId() {
+    this.route.paramMap.subscribe(params => {
+      if(!!params.get("id")) {
+        this.pessoasService.carregaPessoa(params.get("id"));
+      }
+    })
   }
 }

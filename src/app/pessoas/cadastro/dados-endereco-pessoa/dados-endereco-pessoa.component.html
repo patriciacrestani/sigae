@@ -1,45 +1,45 @@
-<form [formGroup]="enderecoForm">
+<form [formGroup]="enderecoForm" class="form">
     <div class="form-row">
         <p-floatLabel class="p-fluid" style="width: 100%;">
             <input 
                 pInputText 
                 id="logradouro" 
-                [placeholder]="logradouroPlaceholder"
-                [maxlength]="padraoMaxLength"
+                [placeholder]="dadosEnderecoFormConfig.placeholders.logradouro"
+                [maxlength]="dadosEnderecoFormConfig.maxLengths.padrao"
                 formControlName="logradouro" />
-            <label for="logradouro">Logradouro</label>
+            <label for="logradouro">{{ dadosEnderecoFormConfig.labels.logradouro }}</label>
         </p-floatLabel>
 
         <p-floatLabel class="p-fluid" style="width: 100%;">
             <input 
                 pInputText 
                 id="cidade" 
-                [placeholder]="cidadePlaceholder"
-                [maxlength]="curtoMaxLength"
+                [placeholder]="dadosEnderecoFormConfig.placeholders.cidade"
+                [maxlength]="dadosEnderecoFormConfig.maxLengths.curto"
                 formControlName="cidade" />
-            <label for="cidade">Cidade</label>
+            <label for="cidade">{{ dadosEnderecoFormConfig.labels.cidade }}</label>
         </p-floatLabel>
     </div>
 
     <div class="form-row form-row--margin">
         <p-floatLabel class="p-fluid" style="width: 100%;">
             <p-inputMask 
-                [mask]="cepMask"
+                [mask]="dadosEnderecoFormConfig.masks.cep"
                 id="cep"
                 formControlName="cep"
-                [maxlength]="cepLength"
-                [placeholder]="cepPlaceholder" />
-            <label for="cep">CEP</label>
+                [maxlength]="dadosEnderecoFormConfig.lengths.cep"
+                [placeholder]="dadosEnderecoFormConfig.placeholders.cep" />
+            <label for="cep">{{ dadosEnderecoFormConfig.labels.cep }}</label>
         </p-floatLabel>
 
         <p-floatLabel class="p-fluid" style="width: 100%;">
             <input 
                 pInputText 
                 id="estado" 
-                [placeholder]="estadoPlaceholder"
-                [maxlength]="curtoMaxLength"
+                [placeholder]="dadosEnderecoFormConfig.placeholders.estado"
+                [maxlength]="dadosEnderecoFormConfig.maxLengths.curto"
                 formControlName="estado" />
-            <label for="estado">Estado</label>
+            <label for="estado">{{ dadosEnderecoFormConfig.labels.estado }}</label>
         </p-floatLabel>
 
         <p-floatLabel class="p-fluid" style="width: 100%;">
@@ -47,8 +47,16 @@
                 [options]="paises" 
                 formControlName="pais" 
                 id="pais"  
-                [placeholder]="paisPlaceholder" />
-            <label for="pais">País</label>
+                [placeholder]="dadosEnderecoFormConfig.placeholders.pais" />
+            <label for="pais">{{ dadosEnderecoFormConfig.labels.pais }}</label>
         </p-floatLabel>
+    </div>
+
+    <div class="form_buttons">
+        <p-button 
+            class="form_buttons_avancar"
+            label="Salvar" 
+            [disabled]="desabilitaAvancar()"
+            (onClick)="avancar()" />
     </div>
 </form>

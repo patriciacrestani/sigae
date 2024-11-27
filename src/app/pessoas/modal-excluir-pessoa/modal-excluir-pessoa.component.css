@@ -1,0 +1,14 @@
+.modal-confirmacao {
+    background-color: #ffffff;
+    padding: 1rem;
+}
+
+.modal-confirmacao_buttons {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 6px;
+}
+
+.confirmacao-button {
+    margin-top: 1rem;
+}

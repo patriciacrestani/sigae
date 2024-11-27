@@ -14,5 +14,7 @@ import { PrimeNGConfig } from 'primeng/api';
 export class AppComponent {
   title = 'sigae';
   
-  constructor(private primengConfig: PrimeNGConfig) {}
+  constructor(
+    private primengConfig: PrimeNGConfig,
+  ) {  }
 }

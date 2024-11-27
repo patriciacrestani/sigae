@@ -1,0 +1,60 @@
+<form [formGroup]="planoForm">
+    <div class="form-row form-row--margin">
+        <p-floatLabel class="p-fluid" style="width: 100%;">
+            <input 
+                pInputText 
+                id="titulo" 
+                formControlName="titulo" 
+                [placeholder]="planoFormConfig.placeholders.titulo"
+                [maxlength]="planoFormConfig.maxLengths.padrao" />
+            <label for="titulo">{{ planoFormConfig.labels.titulo }}</label>
+        </p-floatLabel>
+    </div>
+
+    <div class="form-row form-row--margin">
+        <p-floatLabel class="p-fluid" style="width: 100%;">
+            <input 
+                pInputText 
+                id="descricao" 
+                formControlName="descricao"  
+                [placeholder]="planoFormConfig.placeholders.descricao"
+                [maxlength]="planoFormConfig.maxLengths.longo" />
+            <label for="descricao">{{ planoFormConfig.labels.descricao }}</label>
+        </p-floatLabel>
+    </div>
+
+    <div class="form-row form-row--margin">
+        <p-floatLabel class="p-fluid" style="width: 100%;">
+            <p-calendar 
+                formControlName="dataInicio"
+                inputId="dataInicio" />
+            <label for="dataInicio">{{ planoFormConfig.labels.dataInicio }}</label>
+        </p-floatLabel>
+
+        <p-floatLabel class="p-fluid" style="width: 100%;">
+            <p-calendar 
+                formControlName="dataTermino"
+                inputId="dataTermino" />
+            <label for="dataTermino">{{ planoFormConfig.labels.dataTermino }}</label>
+        </p-floatLabel>
+
+        <p-floatLabel class="p-fluid" style="width: 100%;">
+            <p-dropdown 
+                [options]="status" 
+                formControlName="status" 
+                optionLabel="descricao"
+                id="status"  
+                [placeholder]="planoFormConfig.placeholders.status" />
+            <label for="status">{{ planoFormConfig.labels.status }}</label>
+        </p-floatLabel>
+    </div>
+
+    <div class="form_buttons">
+        <p-button 
+            class="form_buttons_avancar"
+            label="Próximo" 
+            icon="pi pi-arrow-right" 
+            iconPos="right" 
+            (onClick)="avancar()" />
+    </div>
+</form>

@@ -14,9 +14,36 @@ export const formFieldLimits = {
     maxLengths: {
         curto: 100,
         padrao: 255,
+        longo: 500
     },
     minLengths: {
         padrao: 50,
+        curto: 10
+    },
+    labels: {
+        nome: "Nome",
+        nomeSocial: "Nome social",
+        cpf: "CPF",
+        cnpj: "CNPJ",
+        escola: "Escola",
+        telefone: "Telefone",
+        email: "E-mail",
+        logradouro: "Logradouro",
+        cidade: "Cidade",
+        cep: "CEP",
+        estado: "Estado",
+        pais: "País",
+        titulo: "Título",
+        tituloProblema: "Título do problema",
+        descricao: "Descrição",
+        dataInicio: "Data de início",
+        dataTermino: "Data de término",
+        status: "Status",
+        resultado: "Resultado",
+        etapa: "Etapa",
+        possuiCausa: "Possui causa?",
+        prioridade: "Prioridade",
+        categoria: "Categoria",
     },
     placeholders: {
         nome: "Digite o nome",
@@ -30,6 +57,16 @@ export const formFieldLimits = {
         cidade: "Digite a cidade",
         cep: "999999-99",
         estado: "Digite o estado",
-        pais: "Selecione o país"
+        pais: "Selecione o país",
+        titulo: "Digite o título",
+        descricao: "Digite a descrição",
+        dataInicio: "DD/MM/AAAA",
+        dataTermino: "DD/MM/AAAA",
+        status: "Selecione o status",
+        resultado: "Digite o resultado",
+        etapa: "Selecione a etapa",
+        possuiCausa: "",
+        prioridade: "Selecione a prioridade",
+        categoria: "Selecione a categoria",
     }
 };

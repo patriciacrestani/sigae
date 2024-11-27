@@ -34,6 +34,29 @@ export const routes: Routes = [
             },
         ] 
     },
+    { 
+        path: ':id', 
+        component: CadastroPessoaComponent,
+        children: [
+            { 
+                path: '', 
+                pathMatch: 'full',
+                redirectTo: 'dados-cadastrais'
+            },
+            { 
+                path: 'dados-cadastrais', 
+                component: DadosCadastraisPessoaComponent 
+            },
+            { 
+                path: 'dados-contato', 
+                component: DadosContatoPessoaComponent 
+            },
+            { 
+                path: 'dados-endereco', 
+                component: DadosEnderecoPessoaComponent 
+            },
+        ] 
+    },
 ];
 
 @NgModule({

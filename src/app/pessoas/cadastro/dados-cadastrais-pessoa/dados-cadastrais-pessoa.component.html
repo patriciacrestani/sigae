@@ -1,14 +1,14 @@
-<form [formGroup]="formPessoa">
+<form [formGroup]="pessoaForm" class="form">
     <div class="form-row">
         <p-floatLabel class="p-fluid" style="width: 100%;">
             <input 
                 pInputText 
                 id="nome" 
                 formControlName="nome" 
-                [placeholder]="nomePlaceholder"
-                [minlength]="padraoMinLength"
-                [maxlength]="padraoMaxLength" />
-            <label for="nome">Nome</label>
+                [placeholder]="dadosCadastraisFormConfig.placeholders.nome"
+                [minlength]="dadosCadastraisFormConfig.minLengths.curto"
+                [maxlength]="dadosCadastraisFormConfig.maxLengths.padrao" />
+            <label for="nome">{{ dadosCadastraisFormConfig.labels.nome }}</label>
         </p-floatLabel>
 
         <p-floatLabel class="p-fluid" style="width: 100%;">
@@ -16,32 +16,32 @@
                 pInputText 
                 id="nomeSocial" 
                 formControlName="nomeSocial"  
-                [placeholder]="nomeSocialPlaceholder"
-                [minlength]="padraoMinLength"
-                [maxlength]="padraoMaxLength" />
-            <label for="nomeSocial">Nome social</label>
+                [placeholder]="dadosCadastraisFormConfig.placeholders.nomeSocial"
+                [minlength]="dadosCadastraisFormConfig.minLengths.padrao"
+                [maxlength]="dadosCadastraisFormConfig.maxLengths.padrao" />
+            <label for="nomeSocial">{{ dadosCadastraisFormConfig.labels.nomeSocial }}</label>
         </p-floatLabel>
     </div>
 
     <div class="form-row form-row--margin">
         <p-floatLabel class="p-fluid" style="width: 100%;">
             <p-inputMask 
-                [mask]="cpfMask"
-                [maxlength]="cpfLength"
+                [mask]="dadosCadastraisFormConfig.masks.cpf"
+                [maxlength]="dadosCadastraisFormConfig.lengths.cpf"
                 id="cpf"
                 formControlName="cpf"
-                [placeholder]="cpfPlaceholder" />
-            <label for="cpf">CPF</label>
+                [placeholder]="dadosCadastraisFormConfig.placeholders.cpf" />
+            <label for="cpf">{{ dadosCadastraisFormConfig.labels.cpf }}</label>
         </p-floatLabel>
 
         <p-floatLabel class="p-fluid" style="width: 100%;">
             <p-inputMask 
-                [mask]="cnpjMask"
-                [maxlength]="cnpjLength"
+                [mask]="dadosCadastraisFormConfig.masks.cnpj"
+                [maxlength]="dadosCadastraisFormConfig.lengths.cnpj"
                 id="cnpj"
                 formControlName="cnpj"
-                [placeholder]="cnpjPlaceholder" />
-            <label for="cnpj">CNPJ</label>
+                [placeholder]="dadosCadastraisFormConfig.placeholders.cnpj" />
+            <label for="cnpj">{{ dadosCadastraisFormConfig.labels.cnpj }}</label>
         </p-floatLabel>
 
         <p-floatLabel class="p-fluid" style="width: 100%;">
@@ -49,9 +49,10 @@
                 [options]="escolas" 
                 formControlName="escola" 
                 optionLabel="nome"
+                optionValue="id"
                 id="escola"  
-                [placeholder]="escolaPlaceholder" />
-            <label for="escola">Escola</label>
+                [placeholder]="dadosCadastraisFormConfig.placeholders.escola" />
+            <label for="escola">{{ dadosCadastraisFormConfig.labels.escola }}</label>
         </p-floatLabel>
     </div>
 
@@ -61,6 +62,7 @@
             label="Próximo" 
             icon="pi pi-arrow-right" 
             iconPos="right" 
+            [disabled]="desabilitaAvancar()"
             (onClick)="avancar()" />
     </div>
 </form>

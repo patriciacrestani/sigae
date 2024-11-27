@@ -1,0 +1,12 @@
+<p-dialog [modal]="true" [(visible)]="visible" [draggable]="false">
+    <ng-template pTemplate="headless">
+        <div class="modal-confirmacao">
+            <p>Deseja realmente excluir {{ nomePessoa }}?</p>
+            
+            <div class="modal-confirmacao_buttons">
+                <p-button class="confirmacao-button" severity="secondary" label="Não" (onClick)="controlaVisibilidade()"/>
+                <p-button class="confirmacao-button" label="Sim" (onClick)="excluir()"/>
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>

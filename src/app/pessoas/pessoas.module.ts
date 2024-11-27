@@ -15,6 +15,7 @@ import { ListagemPessoasComponent } from './listagem-pessoas/listagem-pessoas.co
 import { DropdownModule } from 'primeng/dropdown';
 import { InputMaskModule } from 'primeng/inputmask';
 import { StepsModule } from 'primeng/steps';
+import { ModalExcluirPessoaComponent } from './modal-excluir-pessoa/modal-excluir-pessoa.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { StepsModule } from 'primeng/steps';
     TableModule,
     DropdownModule,
     InputMaskModule,
-    StepsModule
+    StepsModule,
+    ModalExcluirPessoaComponent
   ]
 })
 export class PessoasModule { }

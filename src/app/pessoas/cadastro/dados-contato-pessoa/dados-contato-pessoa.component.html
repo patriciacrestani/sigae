@@ -1,27 +1,27 @@
-<form [formGroup]="contatoForm" class="form--width">
+<form [formGroup]="contatoForm" class="form form--width">
     <div class="form-row">
         <p-floatLabel class="p-fluid" style="width: 100%;">
             <input 
                 pInputText 
                 id="email" 
-                [placeholder]="emailPlaceholder"
-                [maxlength]="curtoMaxLength"
+                [placeholder]="dadosContatoFormConfig.placeholders.email"
+                [maxlength]="dadosContatoFormConfig.maxLengths.curto"
                 formControlName="email" />
-            <label for="email">E-mail</label>
+            <label for="email">{{ dadosContatoFormConfig.labels.email }}</label>
         </p-floatLabel>
     </div>
 
     <ng-container formArrayName="telefones">
         <ng-container *ngFor="let telefoneForm of telefones.controls; let i = index">
-            <div class="form-row form-row--margin" [formGroup]="telefoneForm">
+            <div class="form-row form-row--margin form-row--direction" [formGroup]="telefoneForm">
                 <p-floatLabel class="p-fluid" style="width: 100%;">
                     <p-inputMask 
-                        [mask]="telefoneMask"
+                        [mask]="dadosContatoFormConfig.masks.telefone"
                         id="telefone{{i+1}}"
                         formControlName="telefone"
-                        [maxlength]="telefoneLength"
-                        [placeholder]="telefonePlaceholder" />
-                    <label for="telefone{{i+1}}">Telefone {{ i+1 }}</label>
+                        [maxlength]="dadosContatoFormConfig.lengths.telefone"
+                        [placeholder]="dadosContatoFormConfig.placeholders.telefone" />
+                    <label for="telefone{{i+1}}">{{ dadosContatoFormConfig.labels.telefone }} {{ i+1 }}</label>
                 </p-floatLabel>
 
                 <p-button 
@@ -43,4 +43,14 @@
         [text]="true" 
         [plain]="true"
         (onClick)="adicionaTelefone()" />
+
+    <div class="form_buttons">
+        <p-button 
+            class="form_buttons_avancar"
+            label="Próximo" 
+            icon="pi pi-arrow-right" 
+            iconPos="right" 
+            [disabled]="desabilitaAvancar()"
+            (onClick)="avancar()" />
+    </div>
 </form>

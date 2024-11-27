@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { formFieldLimits } from '../../../config/formConfig';
+import { dadosContatoFormConfig } from './dados-contato-pessoa-form-config';
+import { PessoasService } from '../../pessoas.service';
+import { Pessoa } from '../../../models/pessoa';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-dados-contato-pessoa',
@@ -9,42 +13,64 @@ import { formFieldLimits } from '../../../config/formConfig';
   styleUrl: './dados-contato-pessoa.component.css'
 })
 export class DadosContatoPessoaComponent {
-  // field lengths
-  curtoMaxLength: number = formFieldLimits.maxLengths.curto;
-  telefoneLength: number = formFieldLimits.lengths.telefone;
-
-  // masks
-  telefoneMask: string = formFieldLimits.masks.telefone;
-
-  // placeholders
-  emailPlaceholder: string = formFieldLimits.placeholders.email;
-  telefonePlaceholder: string = formFieldLimits.placeholders.telefone;
-
   contatoForm: FormGroup;
+  dadosContatoFormConfig = dadosContatoFormConfig;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private route: ActivatedRoute,
+    private pessoasService: PessoasService
   ) {
     this.createForm();
   }
 
   createForm(): void {
     this.contatoForm = this.formBuilder.group({
-      email: ['', Validators.compose([Validators.required, Validators.email, Validators.maxLength(this.curtoMaxLength)])],
+      email: ['', Validators.compose([Validators.required, Validators.email, Validators.maxLength(this.dadosContatoFormConfig.maxLengths.curto)])],
       telefones: this.formBuilder.array([])
     });
     this.adicionaTelefone();
+    this.buscaPessoaSalva();
+  }
+
+  buscaPessoaSalva() {
+    if(!!this.pessoasService.getPessoa()) {
+      let pessoa = new Pessoa();
+      pessoa.map(this.pessoasService.getPessoa());
+      this.atualizaFormulario(pessoa);
+    }
+  }
+  
+  atualizaFormulario(pessoa: Pessoa) {
+    if(!pessoa || !pessoa.contato) {
+      return;
+    }
+
+    if(!!pessoa.contato.email) {
+      this.contatoForm.get("email").setValue(pessoa.contato.email);
+    }
+
+    if(!!pessoa.contato.telefones && pessoa.contato.telefones.length > 0) {
+      for (let index = 0; index < pessoa.contato.telefones.length; index++) {
+        if(index == 0) {
+          this.telefones.at(0).get("telefone").setValue(pessoa.contato.telefones[0]);
+        } else {
+          this.adicionaTelefone(pessoa.contato.telefones[index]);
+        }
+      }
+    } 
   }
 
   get telefones(): FormArray {
     return this.contatoForm.get("telefones") as FormArray;
   }
 
-  adicionaTelefone(): void {
+  adicionaTelefone(telefone?): void {
     if(this.telefones) {
       this.telefones.push(
         this.formBuilder.group({
-          telefone: ['', Validators.compose([Validators.required, Validators.maxLength(this.telefoneLength)])]
+          telefone: [telefone ? telefone : '', Validators.compose([Validators.required, Validators.maxLength(this.dadosContatoFormConfig.lengths.telefone)])]
         })
       );
     }
@@ -58,5 +84,22 @@ export class DadosContatoPessoaComponent {
 
   exibeBotaoRemoverTelefone(): boolean {
     return (this.telefones.length > 1);
+  }
+  
+  desabilitaAvancar(): boolean {
+    return this.contatoForm.invalid;
+  }
+
+  getDadosForm() {
+    let dadosContato = this.contatoForm.getRawValue();
+    dadosContato.telefones = dadosContato.telefones.map(telefone => telefone.telefone);
+    return dadosContato;
+  }
+
+  avancar() {
+    let pessoa = new Pessoa();
+    pessoa.mapContato(this.getDadosForm());
+    this.pessoasService.salvaPessoa(pessoa);
+    this.router.navigate(['..', 'dados-endereco'], { relativeTo: this.route });
   }
 }

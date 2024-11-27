@@ -1,9 +1,9 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { CadastroPlanoAcaoComponent } from './cadastro-plano-acao/cadastro-plano-acao.component';
-import { CadastroPlanoPlanoAcaoComponent } from './cadastro-plano-plano-acao/cadastro-plano-plano-acao.component';
-import { CadastroObjetivosPlanoAcaoComponent } from './cadastro-objetivos-plano-acao/cadastro-objetivos-plano-acao.component';
-import { CadastroAcoesPlanoAcaoComponent } from './cadastro-acoes-plano-acao/cadastro-acoes-plano-acao.component';
+import { CadastroPlanoAcaoComponent } from './cadastro/cadastro-plano-acao/cadastro-plano-acao.component';
+import { PlanoAcaoComponent } from './cadastro/plano-acao/plano-acao.component';
+import { ObjetivosPlanoAcaoComponent } from './cadastro/objetivos-plano-acao/objetivos-plano-acao.component';
+import { AcoesPlanoAcaoComponent } from './cadastro/acoes-plano-acao/acoes-plano-acao.component';
 
 export const routes: Routes = [ 
     { 
@@ -22,15 +22,15 @@ export const routes: Routes = [
             },
             { 
                 path: 'plano', 
-                component: CadastroPlanoPlanoAcaoComponent 
+                component: PlanoAcaoComponent 
             },
             { 
                 path: 'objetivos', 
-                component: CadastroObjetivosPlanoAcaoComponent 
+                component: ObjetivosPlanoAcaoComponent 
             },
             { 
                 path: 'acoes', 
-                component: CadastroAcoesPlanoAcaoComponent 
+                component: AcoesPlanoAcaoComponent 
             },
         ] 
     },

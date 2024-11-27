@@ -1,6 +1,6 @@
-import { Escola } from "../models/escola";
+import { IEscola } from "../models/escola";
 
-export const ESCOLAS: Escola[] = [
+export const ESCOLAS: IEscola[] = [
     {
         id: 1,
         nome: "Primeira escola"
@@ -21,4 +21,4 @@ export const ESCOLAS: Escola[] = [
         id: 5,
         nome: "Quinta escola"
     }
-]
+];
