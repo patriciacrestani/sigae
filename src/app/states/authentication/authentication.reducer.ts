@@ -1,23 +1,22 @@
-import { createReducer, createSelector, on } from "@ngrx/store";
 import { login, logout } from "./authentication.actions";
 
 export interface AuthState{
-    email: String,
-    isAuthenticated: boolean;
+  email: string,
+  authenticated: boolean;
 }
     
-export const initialAuthState: AuthState={
-    email:"",
-    isAuthenticated: false,
+export const initialAuthState: AuthState = {
+  email: "",
+  authenticated: false
 }
-
-export const getAuthReducer = createReducer(
-  initialAuthState,
   
-  on(login, (state, {email: email}) => {
-    return ({...state, email, isAuthenticated: true})}),
-  
-  on(logout, (state) => initialAuthState),
-);
-
-export const selectAuth = (state: AuthState) => state.isAuthenticated;
+export function authReducer(state = initialAuthState, action): AuthState {
+  switch (action.type) {
+    case login.type:
+      return {...state, email: action.email, authenticated: true };
+    case logout.type:
+      return initialAuthState;
+    default:
+      return state;
+  }
+}

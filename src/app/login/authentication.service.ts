@@ -1,27 +1,25 @@
 import { Injectable } from '@angular/core';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { login, logout } from '../states/authentication/authentication.actions';
-import { selectAuth } from '../states/authentication/authentication.reducer';
-import { take } from 'rxjs';
+import { AuthState } from '../states/authentication/authentication.reducer';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  constructor(private store: Store){}
+  constructor(private store: Store<AuthState>){}
   
-  login(email: String){
-    this.store.dispatch(login({email: email}));
+  login(emailLogin: string){
+    this.store.dispatch(login({ email: emailLogin }));
   }
 
-  isAuthenticated(): boolean {
-    let isAuthenticated: boolean;
-    this.store.pipe(select(selectAuth),take(1)).subscribe((response) => {
-      isAuthenticated = response;
+  checkAuthentication(): boolean {
+    let checkAutentication: boolean;
+    this.store.select('authenticated').subscribe((response) => {
+      checkAutentication = response["authenticated"];
     });
-    console.log(isAuthenticated);
-   return isAuthenticated;
+   return checkAutentication;
   }
 
   logout(){

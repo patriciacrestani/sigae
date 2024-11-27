@@ -31,13 +31,13 @@ export class LoginComponent {
 
   createForm() {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.compose([Validators.required, Validators.email])],
-      senha: ['', Validators.compose([Validators.required, Validators.maxLength(loginFormConfig.lengths.senha)])]
+      email: ['', Validators.compose([Validators.required, Validators.email, Validators.maxLength(this.loginFormConfig.maxLengths.padrao)])],
+      senha: ['', Validators.compose([Validators.required, Validators.maxLength(this.loginFormConfig.lengths.senha)])]
     });
   }
 
   login() {
     this.authenticationService.login(this.loginForm.getRawValue()["email"]);
-    console.log(this.authenticationService.isAuthenticated());
+    this.closed.emit();
   }
 }

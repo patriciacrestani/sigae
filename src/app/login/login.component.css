@@ -5,11 +5,15 @@
 }
 
 .login-form_field {
-    margin: 1rem;
+    margin-top: 1rem;
+}
+
+.login-form_field--margin {
+    margin-top: 2rem;
 }
 
 .login-form_button {
-    margin-top: 1rem;
+    margin-top: 2rem;
     display: flex;
     justify-content: center;
 }

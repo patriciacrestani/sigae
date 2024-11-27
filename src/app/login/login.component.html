@@ -1,19 +1,21 @@
 <p-dialog class="login-modal" header="Login" [modal]="true" [(visible)]="visible" [draggable]="false" (onHide)="closed.emit()">
     <form [formGroup]="loginForm" class="login-form">
-        <p-floatLabel class="login-form_field">
+        <p-floatLabel class="login-form_field p-fluid" style="width: 100%;">
             <input 
                 pInputText 
                 id="email" 
                 formControlName="email"
+                [maxlength]="loginFormConfig.maxLengths.padrao"
                 [placeholder]="loginFormConfig.placeholders.email" />
             <label for="email">{{ loginFormConfig.labels.email }}</label>
         </p-floatLabel>
 
-        <p-floatLabel class="login-form_field">
+        <p-floatLabel class="login-form_field login-form_field--margin p-fluid" style="width: 100%;">
             <p-password 
                 id="senha" 
                 formControlName="senha" 
                 [placeholder]="loginFormConfig.placeholders.senha" 
+                [maxlength]="loginFormConfig.lengths.senha"
                 [toggleMask]="true" 
                 [feedback]="false" />
             <label for="senha">{{ loginFormConfig.labels.senha }}</label>
