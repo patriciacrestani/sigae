@@ -1,6 +1,7 @@
 {
   "name": "sigae",
   "version": "0.0.0",
+  "homepage": "https://patriciacrestani.github.io/sigae/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
