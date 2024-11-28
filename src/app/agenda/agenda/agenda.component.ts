@@ -1,14 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component, ViewChild } from '@angular/core';
+import { Component, signal, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { FullCalendarModule } from '@fullcalendar/angular';
-import { CalendarOptions } from '@fullcalendar/core';
+import { Calendar, CalendarOptions, EventApi } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { ButtonModule } from 'primeng/button';
 import { CalendarModule } from 'primeng/calendar';
 import { ModalCadastrarEventoComponent } from '../modal-cadastrar-evento/modal-cadastrar-evento.component';
 import { EventoService } from '../evento.service';
+import { Evento } from '../../models/evento';
 
 @Component({
   selector: 'app-agenda',
@@ -21,6 +22,7 @@ export class AgendaComponent {
   @ViewChild("modalCadastrarEvento") modalCadastrarEvento: ModalCadastrarEventoComponent;
 
   dataSelecionada: Date = new Date();
+  eventos: Evento[];
 
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin],
@@ -43,9 +45,39 @@ export class AgendaComponent {
       right: 'prev next'
     }, 
     height: "100%",
+    eventsSet: this.getEventos.bind(this)
   };
+  
+  currentEvents = signal<EventApi[]>([]);
 
-  constructor(private eventoService: EventoService) {}
+  constructor(
+    private eventoService: EventoService,
+  ) {
+    this.getEventos();
+  }
+
+  formataData(data): string {
+    let datas = data.split('/');
+    let dataFormatada = datas[1] + "-" + datas[0] + "-" + datas[2];
+    return dataFormatada;
+  }
+
+  getEventos() {
+    this.eventos = this.eventoService.getEventos();
+    if(this.possuiEventos()) {
+      let eventosMapeados = this.eventos.map(evento => {
+        return {
+          title: evento.titulo,
+          start: new Date(this.formataData(evento.data))
+        } as EventApi
+      });
+      this.currentEvents.set(eventosMapeados);
+    }
+  }
+
+  possuiEventos(): boolean {
+    return(!!this.eventos && this.eventos.length > 0); 
+  }
 
   criarEvento() {
     this.modalCadastrarEvento.controlaVisibilidade();
