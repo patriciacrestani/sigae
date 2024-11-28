@@ -1,9 +1,11 @@
 <div class="calendar">
     <div #calendarSidebar class="calendar_sidebar">
-
-        <a routerLink="/pessoas/cadastro" class="p-button font-bold calendar_sidebar_button">
-            Adicionar evento <i class="pi pi-plus-circle"></i>
-        </a>
+        <p-button 
+            class="p-fluid calendar_sidebar_button"
+            label="Adicionar evento" 
+            icon="pi pi-plus-circle" 
+            iconPos="right" 
+            (onClick)="criarEvento()" />
 
         <p-calendar 
             class="calendar_sidebar_input"
@@ -16,3 +18,7 @@
         <full-calendar class="calendar_preview" [options]="calendarOptions"></full-calendar>
     </div>
 </div>
+
+<app-modal-cadastrar-evento
+    #modalCadastrarEvento
+></app-modal-cadastrar-evento>

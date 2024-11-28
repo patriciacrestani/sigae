@@ -1,0 +1,71 @@
+<p-dialog header="Novo evento" [modal]="true" [(visible)]="visible" [draggable]="true"  [style]="{ width: '50rem' }"  [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <form [formGroup]="eventoForm" class="evento-form">
+        <p-floatLabel class="p-fluid evento-form-field" style="width: 100%;">
+            <input 
+                pInputText 
+                id="titulo" 
+                formControlName="titulo"
+                [maxlength]="eventoFormConfig.maxLengths.padrao"
+                [placeholder]="eventoFormConfig.placeholders.titulo" />
+            <label for="titulo">{{ eventoFormConfig.labels.titulo }}</label>
+        </p-floatLabel>
+
+        <p-floatLabel class="p-fluid evento-form-field" style="width: 100%;">
+            <textarea 
+                id="descricao" 
+                rows="5" 
+                cols="30" 
+                pInputTextarea
+                formControlName="descricao"
+                [maxlength]="eventoFormConfig.maxLengths.longo"
+                [placeholder]="eventoFormConfig.placeholders.descricao"
+            ></textarea>
+            <label for="descricao">{{ eventoFormConfig.labels.descricao }}</label>
+        </p-floatLabel>
+
+        <div class="evento-form-row">
+            <p-floatLabel class="p-fluid evento-form-field" style="width: 100%;">
+                <p-calendar 
+                    [placeholder]="eventoFormConfig.placeholders.data"
+                    formControlName="data"
+                    inputId="data" />
+                <label for="data">{{ eventoFormConfig.labels.data }}</label>
+            </p-floatLabel>
+
+            <p-floatLabel class="p-fluid evento-form-field" style="width: 100%;">
+                <p-calendar 
+                    inputId="horario" 
+                    [placeholder]="eventoFormConfig.placeholders.horario"
+                    formControlName="horario"
+                    [timeOnly]="true" />
+                <label for="horario">{{ eventoFormConfig.labels.horario }}</label>
+            </p-floatLabel>
+        </div>
+
+
+        <p-floatLabel class="p-fluid evento-form-field" style="width: 100%;">
+            <p-multiSelect 
+                inputId="participantes" 
+                [options]="pessoas" 
+                [placeholder]="eventoFormConfig.placeholders.participantes"
+                formControlName="participantes"
+                optionLabel="nome" />
+            <label for="participantes">{{ eventoFormConfig.labels.participantes }}</label>
+        </p-floatLabel>
+
+        <p-floatLabel class="p-fluid evento-form-field" style="width: 100%;">
+            <p-dropdown 
+                [options]="planosAcao"
+                [placeholder]="eventoFormConfig.placeholders.planoAcao"
+                formControlName="planoAcao"
+                optionLabel="titulo" 
+                inputId="planoAcao" />
+            <label for="planoAcao">{{ eventoFormConfig.labels.planoAcao }}</label>
+        </p-floatLabel>
+
+        <div class="form_buttons">
+            <p-button class="" label="Cancelar" severity="secondary" (onClick)="controlaVisibilidade()"/>
+            <p-button class="form_buttons_avancar" label="Salvar" (onClick)="salvar()"/>
+        </div>
+    </form>
+</p-dialog>

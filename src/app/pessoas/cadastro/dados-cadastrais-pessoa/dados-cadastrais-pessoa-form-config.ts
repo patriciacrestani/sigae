@@ -1,6 +1,10 @@
 import { formFieldLimits } from "../../../config/formConfig";
 
 export const dadosCadastraisFormConfig = { ...formFieldLimits,
+    masks: {
+        cpf: "999.999.999-99",
+        cnpj: "99.999.999/9999-99",
+    },
     lengths: {
         cnpj: 18,
         cpf: 14,

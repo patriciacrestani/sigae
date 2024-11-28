@@ -6,6 +6,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { provideState, provideStore } from '@ngrx/store';
 import { pessoaReducer } from './states/pessoa/pessoa.reducer';
 import { authReducer } from './states/authentication/authentication.reducer';
+import { eventoReducer } from './states/evento/evento.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,6 +16,7 @@ export const appConfig: ApplicationConfig = {
     { provide: LOCALE_ID, useValue: 'pt' },
     provideStore(),
     provideState({name: 'authenticated', reducer: authReducer}),
-    provideState({name: 'pessoas', reducer: pessoaReducer})
+    provideState({name: 'pessoas', reducer: pessoaReducer}),
+    provideState({name: 'eventos', reducer: eventoReducer})
 ]
 };

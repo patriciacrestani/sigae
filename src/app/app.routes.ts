@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { AgendaComponent } from './agenda/agenda.component';
 import { AuthGuard } from './services/auth-guard.service';
+import { AgendaComponent } from './agenda/agenda/agenda.component';
 
 export const routes: Routes = [ 
     { 
