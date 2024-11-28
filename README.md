@@ -14,6 +14,7 @@ Este projeto se trata de uma agenda, com possibilidade de registro de contatos e
 1. Tela de login do usuário com autenticação controlada por gerenciamento de estados (como o login é fake, é possível informar qualquer e-mail e senha para realização do login)
 
 - As rotas do sistema são protegidas por um guard que verifica se o usuário está autenticado.
+- Como o login é controlado por gerenciamento de estados, atualizar a página irá resetar a autenticação.
 
 2. Home Page com cards com resumo do total de planos de melhoria criados e total de usuários cadastrados.
 
@@ -37,6 +38,7 @@ Este projeto se trata de uma agenda, com possibilidade de registro de contatos e
 Por questões de tempo, algumas funcionalidades não foram implementadas, como:
 
 - Implementar CAPTCHA no login;
+- Criar uma página de acesso negado;
 - Implementar testes unitários;
 - Melhorar a visualização da home;
 - Implementar cadastro de ações de cada problema do plano de ações;
