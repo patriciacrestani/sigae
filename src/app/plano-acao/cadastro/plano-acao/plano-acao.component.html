@@ -43,6 +43,7 @@
                 [options]="status" 
                 formControlName="status" 
                 optionLabel="descricao"
+                optionValue="id"
                 id="status"  
                 [placeholder]="planoFormConfig.placeholders.status" />
             <label for="status">{{ planoFormConfig.labels.status }}</label>
@@ -55,6 +56,7 @@
             label="Próximo" 
             icon="pi pi-arrow-right" 
             iconPos="right" 
+            [disabled]="desabilitaAvancar()"
             (onClick)="avancar()" />
     </div>
 </form>

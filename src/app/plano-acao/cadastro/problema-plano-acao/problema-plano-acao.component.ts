@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { problemaFormConfig } from './problema-form-config';
 import { ClasseGenerica } from '../../../models/classe-generica';
 import { Problema } from '../../../models/problema';
+import { EtapaPlanoAcaoEnum } from '../../../enums/etapa-plano-acao-enum';
+import { PrioridadePlanoAcaoEnum } from '../../../enums/prioridade-plano-acao-enum';
+import { CategoriaPlanoAcaoEnum } from '../../../enums/categoria-plano-acao-enum';
 
 interface Column {
   field: string;
@@ -21,8 +24,18 @@ export class ProblemaPlanoAcaoComponent {
   etapas: ClasseGenerica[];
   prioridades: ClasseGenerica[];
   categorias: ClasseGenerica[];
-  problemas: Problema[];
+  problemas: Problema[] = [];
   problemaFormConfig = problemaFormConfig;
+  possuiCausa = [
+    {
+      value: true,
+      label: "Sim"
+    },
+    {
+      value: false,
+      label: "Não"
+    }
+  ];
   
   columns: Column[] = [
     { field: 'titulo', header: this.problemaFormConfig.labels.titulo, action: false },
@@ -38,6 +51,13 @@ export class ProblemaPlanoAcaoComponent {
     private formBuilder: FormBuilder
   ) { 
     this.createForm();
+    this.getInfosForm();
+  }
+
+  getInfosForm() {
+    this.etapas = EtapaPlanoAcaoEnum.getEtapa();
+    this.prioridades = PrioridadePlanoAcaoEnum.getPrioridades();
+    this.categorias = CategoriaPlanoAcaoEnum.getCategoria();
   }
 
   createForm() {
@@ -71,6 +91,7 @@ export class ProblemaPlanoAcaoComponent {
       return;
     }
     this.problemas.push(new Problema(this.problemaForm.getRawValue()));
+    console.log(this.problemas);
   }
 
   possuiProblemas(): boolean {

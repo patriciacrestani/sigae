@@ -1,124 +1,132 @@
-<form [formGroup]="problemaForm">
-    <div class="form-row form-row--margin" [formGroup]="problemaForm">
-        <p-floatLabel class="p-fluid" style="width: 100%;">
-            <input 
-                pInputText 
-                id="titulo" 
-                formControlName="titulo" 
-                [placeholder]="problemaFormConfig.placeholders.titulo"
-                [minlength]="problemaFormConfig.minLengths.padrao"
-                [maxlength]="problemaFormConfig.maxLengths.padrao" />
-            <label for="titulo">{{ problemaFormConfig.labels.titulo }}</label>
-        </p-floatLabel>
+<div class="problema-container">
+    <h3 class="problema-title">Problemas</h3>
+    <form [formGroup]="problemaForm">
+        <div class="form-row form-row--margin">
+            <p-floatLabel class="p-fluid" style="width: 100%;">
+                <input 
+                    pInputText 
+                    id="titulo" 
+                    formControlName="titulo" 
+                    [placeholder]="problemaFormConfig.placeholders.titulo"
+                    [maxlength]="problemaFormConfig.maxLengths.padrao" />
+                <label for="titulo">{{ problemaFormConfig.labels.titulo }}</label>
+            </p-floatLabel>
+    
+            <p-floatLabel class="p-fluid" style="width: 100%;">
+                <p-dropdown 
+                    [options]="prioridades" 
+                    formControlName="prioridade" 
+                    optionLabel="descricao"
+                    optionValue="id"
+                    id="prioridade"  
+                    [placeholder]="problemaFormConfig.placeholders.prioridade" />
+                <label for="prioridade">{{ problemaFormConfig.labels.prioridade }}</label>
+            </p-floatLabel>
+    
+            <p-floatLabel class="p-fluid" style="width: 100%;">
+                <p-dropdown 
+                    [options]="categorias" 
+                    formControlName="categoria" 
+                    optionLabel="descricao"
+                    optionValue="id"
+                    id="categoria"  
+                    [placeholder]="problemaFormConfig.placeholders.categoria" />
+                <label for="categoria">{{ problemaFormConfig.labels.categoria }}</label>
+            </p-floatLabel>
+        </div>
+    
+        <div class="form-row form-row--margin">
+            <p-floatLabel class="p-fluid" style="width: 100%;">
+                <textarea 
+                    id="descricao" 
+                    formControlName="descricao" 
+                    rows="3" cols="30" 
+                    pInputTextarea
+                    [placeholder]="problemaFormConfig.placeholders.descricao"
+                    [maxlength]="problemaFormConfig.maxLengths.longo">
+                </textarea>
+                <label for="descricao">{{ problemaFormConfig.labels.descricao }}</label>
+            </p-floatLabel>
+        </div>
 
-        <p-floatLabel class="p-fluid" style="width: 100%;">
-            <p-dropdown 
-                [options]="prioridades" 
-                formControlName="prioridade" 
-                optionLabel="descricao"
-                id="prioridade"  
-                [placeholder]="problemaFormConfig.placeholders.prioridade" />
-            <label for="prioridade">{{ problemaFormConfig.labels.prioridade }}</label>
-        </p-floatLabel>
-
-        <p-floatLabel class="p-fluid" style="width: 100%;">
-            <p-dropdown 
-                [options]="categorias" 
-                formControlName="categoria" 
-                optionLabel="descricao"
-                id="categoria"  
-                [placeholder]="problemaFormConfig.placeholders.categoria" />
-            <label for="categoria">{{ problemaFormConfig.labels.categoria }}</label>
-        </p-floatLabel>
+        <div class="form-row form-row--margin">
+            <p-floatLabel class="p-fluid" style="width: 100%;">
+                <input 
+                    pInputText 
+                    id="resultado" 
+                    formControlName="resultado" 
+                    [placeholder]="problemaFormConfig.placeholders.resultado"
+                    [maxlength]="problemaFormConfig.maxLengths.padrao" />
+                <label for="resultado">{{ problemaFormConfig.labels.resultado }}</label>
+            </p-floatLabel>
+    
+            <p-floatLabel class="p-fluid" style="width: 100%;">
+                <p-dropdown 
+                    [options]="etapas" 
+                    formControlName="etapa" 
+                    optionLabel="descricao"
+                    optionValue="id"
+                    id="etapa"  
+                    [placeholder]="problemaFormConfig.placeholders.etapa" />
+                <label for="etapa">{{ problemaFormConfig.labels.etapa }}</label>
+            </p-floatLabel>
+    
+            <p-floatLabel class="p-fluid" style="width: 100%;">
+                <p-dropdown 
+                    [options]="possuiCausa" 
+                    formControlName="possuiCausa" 
+                    optionLabel="label"
+                    optionValue="value"
+                    id="possuiCausa"  
+                    [placeholder]="problemaFormConfig.placeholders.possuiCausa" />
+                <label for="possuiCausa">{{ problemaFormConfig.labels.possuiCausa }}</label>
+            </p-floatLabel>
+        </div>
+    
+        <div class="form_buttons">
+            <p-button 
+                class="form_buttons_avancar"
+                label="Adicionar problema" 
+                icon="pi pi-check" 
+                iconPos="left" 
+                [disabled]="!habilitaCadastroProblema()"
+                (onClick)="adicionaProblema()" />
+        </div>
+    </form>
+    
+    <div class="problemas_lista">
+        <ng-container *ngIf="possuiProblemas(); else naoPossuiProblemasTemplate">
+            <p-table [columns]="columns" [value]="problemas" [tableStyle]="{ 'min-width': '50rem' }">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let col of columns">
+                            {{ col.header }}
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr>
+                        <td *ngFor="let col of columns">
+                            <span *ngIf="!!col.field">
+                                {{ rowData[col.field] }}
+                            </span>
+            
+                            <span *ngIf="!!col.action">
+                                <p-button 
+                                    icon="pi pi-trash" 
+                                    [text]="true" 
+                                    [rounded]="true"
+                                    [plain]="true"
+                                    (onClick)="removeProblema(rowData)" />
+                            </span>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </ng-container>
+    
+        <ng-template #naoPossuiProblemasTemplate>
+            <p>Nenhum problema cadastrado até o momento.</p>
+        </ng-template>
     </div>
-
-    <div class="form-row form-row--margin" [formGroup]="problemaForm">
-        <p-floatLabel class="p-fluid" style="width: 100%;">
-            <input 
-                pInputText 
-                id="descricao" 
-                formControlName="descricao" 
-                [placeholder]="problemaFormConfig.placeholders.descricao"
-                [maxlength]="problemaFormConfig.maxLengths.longo" />
-            <label for="descricao">{{ problemaFormConfig.labels.descricao }}</label>
-        </p-floatLabel>
-    </div>
-
-    <div class="form-row form-row--margin" [formGroup]="problemaForm">
-        <p-floatLabel class="p-fluid" style="width: 100%;">
-            <input 
-                pInputText 
-                id="resultado" 
-                formControlName="resultado" 
-                [placeholder]="problemaFormConfig.placeholders.resultado"
-                [maxlength]="problemaFormConfig.maxLengths.padrao" />
-            <label for="resultado">{{ problemaFormConfig.labels.resultado }}</label>
-        </p-floatLabel>
-
-        <p-floatLabel class="p-fluid" style="width: 100%;">
-            <p-dropdown 
-                [options]="etapas" 
-                formControlName="etapa" 
-                optionLabel="descricao"
-                id="etapa"  
-                [placeholder]="problemaFormConfig.placeholders.etapa" />
-            <label for="etapa">{{ problemaFormConfig.labels.etapa }}</label>
-        </p-floatLabel>
-
-        <p-floatLabel class="p-fluid" style="width: 100%;">
-            <p-dropdown 
-                [options]="categorias" 
-                formControlName="possuiCausa" 
-                optionLabel="descricao"
-                id="possuiCausa"  
-                [placeholder]="problemaFormConfig.placeholders.possuiCausa" />
-            <label for="possuiCausa">{{ problemaFormConfig.labels.possuiCausa }}</label>
-        </p-floatLabel>
-    </div>
-
-    <!-- <div class="form-row form-row--margin" [formGroup]="problemaForm">
-        <p-button 
-            *ngIf="exibeBotaoRemoverProblema()"
-            icon="pi pi-times" 
-            [text]="true" 
-            [rounded]="true"
-            [plain]="true"
-            (onClick)="removeProblema(i)" />
-    </div> -->
-</form>
-
-<div class="problemas_lista">
-    <ng-container *ngIf="possuiProblemas(); then naoPossuiProblemasTemplate">
-        <p-table [value]="problemas" [tableStyle]="{ 'min-width': '50rem' }">
-            <ng-template pTemplate="header" let-columns>
-                <tr>
-                    <th *ngFor="let col of columns">
-                        {{ col.header }}
-                    </th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-rowData let-columns="columns">
-                <tr>
-                    <td *ngFor="let col of columns">
-                        <span *ngIf="!!col.field">
-                            {{ rowData[col.field] }}
-                        </span>
-        
-                        <span *ngIf="!!col.action">
-                            <p-button 
-                                icon="pi pi-trash" 
-                                [text]="true" 
-                                [rounded]="true"
-                                [plain]="true"
-                                (onClick)="removeProblema(rowData)" />
-                        </span>
-                    </td>
-                </tr>
-            </ng-template>
-        </p-table>
-    </ng-container>
-
-    <ng-template #naoPossuiProblemasTemplate>
-        <p>Nenhum problema cadastrado até o momento.</p>
-    </ng-template>
 </div>

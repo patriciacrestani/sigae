@@ -1,15 +1,15 @@
 import { ClasseGenerica } from "../models/classe-generica";
 
 export class CategoriaPlanoAcaoEnum {
-    public static Pendente: number = 1;
-    public static EmAndamento: number = 2;
-    public static Concluido: number = 3;
+    public static Saude: number = 1;
+    public static Financeiro: number = 2;
+    public static Profissional: number = 3;
 
     public static getDescricoesCategoriaPlanoAcao() {
         return ({
-            1: "Pendente",
-            2: "Em andamento",
-            3: "Concluído"
+            1: "Saúde",
+            2: "Financeiro",
+            3: "Profissional"
         });
     }
 
@@ -21,15 +21,15 @@ export class CategoriaPlanoAcaoEnum {
         return ClasseGenerica.mapList<ClasseGenerica>([
             {
                 id: 1,
-                descricao: "Pendente"
+                descricao: "Saúde"
             },
             {
                 id: 2,
-                descricao: "Em andamento"
+                descricao: "Financeiro"
             },
             {
                 id: 3,
-                descricao: "Concluído"
+                descricao: "Profissional"
             }
         ])
         ;

@@ -5,11 +5,13 @@ import { CadastroPessoaComponent } from './cadastro/cadastro-pessoa/cadastro-pes
 import { DadosCadastraisPessoaComponent } from './cadastro/dados-cadastrais-pessoa/dados-cadastrais-pessoa.component';
 import { DadosContatoPessoaComponent } from './cadastro/dados-contato-pessoa/dados-contato-pessoa.component';
 import { DadosEnderecoPessoaComponent } from './cadastro/dados-endereco-pessoa/dados-endereco-pessoa.component';
+import { AuthGuard } from '../services/auth-guard.service';
 
 export const routes: Routes = [ 
     { 
         path: '', 
-        component: ListagemPessoasComponent
+        component: ListagemPessoasComponent,
+        canActivate: [AuthGuard]
     },
     { 
         path: 'cadastro', 
@@ -22,15 +24,18 @@ export const routes: Routes = [
             },
             { 
                 path: 'dados-cadastrais', 
-                component: DadosCadastraisPessoaComponent 
+                component: DadosCadastraisPessoaComponent,
+                canActivate: [AuthGuard]
             },
             { 
                 path: 'dados-contato', 
-                component: DadosContatoPessoaComponent 
+                component: DadosContatoPessoaComponent,
+                canActivate: [AuthGuard] 
             },
             { 
                 path: 'dados-endereco', 
-                component: DadosEnderecoPessoaComponent 
+                component: DadosEnderecoPessoaComponent,
+                canActivate: [AuthGuard] 
             },
         ] 
     },
@@ -45,15 +50,18 @@ export const routes: Routes = [
             },
             { 
                 path: 'dados-cadastrais', 
-                component: DadosCadastraisPessoaComponent 
+                component: DadosCadastraisPessoaComponent,
+                canActivate: [AuthGuard] 
             },
             { 
                 path: 'dados-contato', 
-                component: DadosContatoPessoaComponent 
+                component: DadosContatoPessoaComponent,
+                canActivate: [AuthGuard] 
             },
             { 
                 path: 'dados-endereco', 
-                component: DadosEnderecoPessoaComponent 
+                component: DadosEnderecoPessoaComponent,
+                canActivate: [AuthGuard] 
             },
         ] 
     },

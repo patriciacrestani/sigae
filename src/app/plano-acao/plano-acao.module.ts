@@ -9,14 +9,12 @@ import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { TableModule } from 'primeng/table';
 import { CadastroPlanoAcaoComponent } from './cadastro/cadastro-plano-acao/cadastro-plano-acao.component';
-import { AcoesPlanoAcaoComponent } from './cadastro/acoes-plano-acao/acoes-plano-acao.component';
 import { ObjetivosPlanoAcaoComponent } from './cadastro/objetivos-plano-acao/objetivos-plano-acao.component';
 import { PlanoAcaoComponent } from './cadastro/plano-acao/plano-acao.component';
 import { ProblemaPlanoAcaoComponent } from './cadastro/problema-plano-acao/problema-plano-acao.component';
-
+import { InputTextareaModule } from 'primeng/inputtextarea';
 @NgModule({
   declarations: [
-    AcoesPlanoAcaoComponent,
     CadastroPlanoAcaoComponent,
     ObjetivosPlanoAcaoComponent,
     PlanoAcaoComponent,
@@ -32,7 +30,8 @@ import { ProblemaPlanoAcaoComponent } from './cadastro/problema-plano-acao/probl
     CalendarModule,
     DropdownModule,
     StepsModule,
-    TableModule
+    TableModule,
+    InputTextareaModule
   ]
 })
 export class PlanoAcaoModule { }

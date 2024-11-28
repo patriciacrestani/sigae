@@ -1,23 +1,46 @@
-<ng-container formArrayName="objetivoFormArray">
-    <ng-container *ngFor="let objetivoForm of objetivoFormArray.controls; let i = index">
-        <div class="form-row form-row--margin" [formGroup]="telefoneForm">
-            <p-floatLabel class="p-fluid" style="width: 100%;">
-                <p-inputMask 
-                    [mask]="telefoneMask"
-                    id="telefone{{i+1}}"
-                    formControlName="telefone"
-                    [maxlength]="telefoneLength"
-                    [placeholder]="telefonePlaceholder" />
-                <label for="telefone{{i+1}}">Telefone {{ i+1 }}</label>
-            </p-floatLabel>
+<form [formGroup]="objetivoForm" class="form">
+    <ng-container formArrayName="objetivos">
+        <ng-container *ngFor="let objForm of objetivos.controls; let i = index">
+            <div class="form-row form-row--margin form-row--direction" [formGroup]="objForm">
+                <p-floatLabel class="p-fluid" style="width: 100%;">
+                    <input 
+                        pInputText 
+                        id="titulo{{i+1}}"
+                        [placeholder]="objetivoFormConfig.placeholders.titulo"
+                        [maxlength]="objetivoFormConfig.maxLengths.curto"
+                        formControlName="titulo" />
+                    <label for="titulo{{i+1}}">{{ objetivoFormConfig.labels.titulo }}</label>
+                </p-floatLabel>
 
-            <p-button 
-                *ngIf="exibeBotaoRemoverTelefone()"
-                icon="pi pi-times" 
-                [text]="true" 
-                [rounded]="true"
-                [plain]="true"
-                (onClick)="removeTelefone(i)" />
-        </div>
+                <p-button 
+                    *ngIf="exibeBotaoRemoverObjetivo()"
+                    icon="pi pi-times" 
+                    [text]="true" 
+                    [rounded]="true"
+                    [plain]="true"
+                    (onClick)="removeObjetivo(i)" />
+            </div>
+
+            <app-problema-plano-acao></app-problema-plano-acao>
+        </ng-container>
     </ng-container>
-</ng-container>
+
+    <p-button 
+        icon="pi pi-plus" 
+        label="Adicionar outro objetivo"
+        class="mr-2" 
+        [rounded]="true"
+        [text]="true" 
+        [plain]="true"
+        (onClick)="adicionaObjetivo()" />
+
+    <div class="form_buttons">
+        <p-button 
+            class="form_buttons_avancar"
+            label="Próximo" 
+            icon="pi pi-arrow-right" 
+            iconPos="right" 
+            [disabled]="desabilitaAvancar()"
+            (onClick)="avancar()" />
+    </div>
+</form>

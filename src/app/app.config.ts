@@ -7,6 +7,7 @@ import { provideState, provideStore } from '@ngrx/store';
 import { pessoaReducer } from './states/pessoa/pessoa.reducer';
 import { authReducer } from './states/authentication/authentication.reducer';
 import { eventoReducer } from './states/evento/evento.reducer';
+import { planoReducer } from './states/plano-acao/plano-acao.reducer';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,6 +18,7 @@ export const appConfig: ApplicationConfig = {
     provideStore(),
     provideState({name: 'authenticated', reducer: authReducer}),
     provideState({name: 'pessoas', reducer: pessoaReducer}),
-    provideState({name: 'eventos', reducer: eventoReducer})
+    provideState({name: 'eventos', reducer: eventoReducer}),
+    provideState({name: 'planos', reducer: planoReducer})
 ]
 };

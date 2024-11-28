@@ -1,0 +1,12 @@
+.problema-container{
+    background-color: #f9fafb;
+    border: 1px solid #d1d5db;
+    border-top: 0;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    padding: 1rem;
+}
+
+.problema-title{
+    margin-top: 0;
+}

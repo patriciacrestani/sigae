@@ -16,10 +16,6 @@ export class CadastroPlanoAcaoComponent {
     {
         label: 'Objetivos',
         routerLink: 'objetivos'
-    },
-    {
-        label: 'Ações',
-        routerLink: 'acoes'
-    },
+    }
   ];
 }

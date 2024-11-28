@@ -10,17 +10,15 @@ export const routes: Routes = [
     },
     { 
         path: 'agenda', 
-        component: AgendaComponent ,
+        component: AgendaComponent,
         canActivate: [AuthGuard]
     },
     { 
         path: 'pessoas', 
-        canActivateChild: [AuthGuard],
         loadChildren: () => import('./pessoas/pessoas.module').then(m => m.PessoasModule)
     },
     { 
         path: 'plano-acao',
-        canActivateChild: [AuthGuard], 
         loadChildren: () => import('./plano-acao/plano-acao.module').then(m => m.PlanoAcaoModule)
     },
 ];

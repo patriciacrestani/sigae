@@ -4,6 +4,7 @@ import { CadastroPlanoAcaoComponent } from './cadastro/cadastro-plano-acao/cadas
 import { PlanoAcaoComponent } from './cadastro/plano-acao/plano-acao.component';
 import { ObjetivosPlanoAcaoComponent } from './cadastro/objetivos-plano-acao/objetivos-plano-acao.component';
 import { AcoesPlanoAcaoComponent } from './cadastro/acoes-plano-acao/acoes-plano-acao.component';
+import { AuthGuard } from '../services/auth-guard.service';
 
 export const routes: Routes = [ 
     { 
@@ -22,15 +23,18 @@ export const routes: Routes = [
             },
             { 
                 path: 'plano', 
-                component: PlanoAcaoComponent 
+                component: PlanoAcaoComponent,
+                canActivate: [AuthGuard]
             },
             { 
                 path: 'objetivos', 
-                component: ObjetivosPlanoAcaoComponent 
+                component: ObjetivosPlanoAcaoComponent,
+                canActivate: [AuthGuard]
             },
             { 
                 path: 'acoes', 
-                component: AcoesPlanoAcaoComponent 
+                component: AcoesPlanoAcaoComponent,
+                canActivate: [AuthGuard] 
             },
         ] 
     },
