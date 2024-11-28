@@ -21,8 +21,9 @@ import { Evento } from '../../models/evento';
 export class AgendaComponent {
   @ViewChild("modalCadastrarEvento") modalCadastrarEvento: ModalCadastrarEventoComponent;
 
-  dataSelecionada: Date = new Date();
+  dataSelecionada: Date = new Date('11-28-2024');
   eventos: Evento[];
+  eventosDoDia: Evento[];
 
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin],
@@ -62,21 +63,34 @@ export class AgendaComponent {
     return dataFormatada;
   }
 
+  mapeiaEventosParaCalendario(novosEventos?) {
+    let eventosParaAdicao = novosEventos ? novosEventos : this.eventos;
+    let eventosMapeados = eventosParaAdicao.map(evento => {
+      return {
+        title: evento.titulo,
+        start: new Date(this.formataData(evento.data))
+      } as EventApi
+    });
+    this.currentEvents.set(eventosMapeados);
+  }
+
+  mapeiaEventosDoDia() {
+    this.eventosDoDia = this.eventos.filter(evento => evento.data == this.dataSelecionada.getDate().toLocaleString())
+  }
+
   getEventos() {
     this.eventos = this.eventoService.getEventos();
     if(this.possuiEventos()) {
-      let eventosMapeados = this.eventos.map(evento => {
-        return {
-          title: evento.titulo,
-          start: new Date(this.formataData(evento.data))
-        } as EventApi
-      });
-      this.currentEvents.set(eventosMapeados);
+      this.mapeiaEventosParaCalendario();
     }
   }
 
   possuiEventos(): boolean {
     return(!!this.eventos && this.eventos.length > 0); 
+  }
+
+  possuiEventosDoDia(): boolean {
+    return(!!this.eventosDoDia && this.eventosDoDia.length > 0); 
   }
 
   criarEvento() {

@@ -12,6 +12,18 @@
             [(ngModel)]="dataSelecionada" 
             [inline]="true" 
             [showWeek]="false"  />
+
+        <div class="calendar_sidebar_day">
+            <h2>Eventos de hoje</h2>
+            <ng-container *ngIf="possuiEventosDoDia(); else semEventosTemplate">
+                <ul>
+                    <li *ngFor="let evento of eventosDoDia">{{ evento.titulo }}</li>
+                </ul>
+            </ng-container>
+            <ng-template #semEventosTemplate>
+                <p>Não há nenhum evento para hoje.</p>
+            </ng-template>
+        </div>
     </div>
 
     <div class="calendar_container">
