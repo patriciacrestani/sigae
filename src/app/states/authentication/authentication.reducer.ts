@@ -7,7 +7,7 @@ export interface AuthState{
     
 export const initialAuthState: AuthState = {
   email: "",
-  authenticated: true
+  authenticated: false
 }
   
 export function authReducer(state = initialAuthState, action): AuthState {
