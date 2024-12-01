@@ -13,8 +13,8 @@ import { AuthenticationService } from '../login/authentication.service';
 })
 export class HomeComponent {
 
-  qtdPessoas: number = 0;
-  qtdPlanoAcao: number = 0;
+  qtdPessoas: string = "0";
+  qtdPlanoAcao: string = "0";
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -26,11 +26,11 @@ export class HomeComponent {
   }
   
   getQtdPessoas() {
-    this.qtdPessoas = this.pessoasService.getPessoas().length;
+    this.qtdPessoas = this.pessoasService.getPessoas().length.toString();
   }
 
   getQtdPlanos() {
-    this.qtdPlanoAcao = this.planoAcaoService.getPlanos().length;
+    this.qtdPlanoAcao = this.planoAcaoService.getPlanos().length.toString();
   }
 
   checkAuthentication(): boolean {

@@ -2,13 +2,13 @@
 
 <ng-content *ngIf="checkAuthentication(); else notAuthenticatedTemplate">
     <div class="home-resumo">
-        <p-card [header]="qtdPessoas" class="home-resumo-card">
+        <p-card [header]="qtdPessoas" class="home-resumo-card" [style]="{ background: '#f9fafb' }">
             <p class="m-0">
                 pessoas cadastradas
             </p>
         </p-card>
 
-        <p-card [header]="qtdPlanoAcao">
+        <p-card [header]="qtdPlanoAcao" [style]="{ background: '#f9fafb' }">
             <p class="m-0">
                 planos de ação cadastrados
             </p>

@@ -6,7 +6,9 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    margin-top: 3rem;
 }
+
 
 .home-resumo-card {
     align-items: center;
@@ -15,4 +17,14 @@
 .home-login {
     margin-top: 1rem;
     text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .home-resumo {
+        display: flex;
+        flex-direction: column;
+        row-gap: 2rem;
+        justify-content: space-evenly;
+        margin-top: 2rem;
+    }
 }
