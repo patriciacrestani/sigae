@@ -1,0 +1,18 @@
+.home-title_center {
+    text-align: center;
+}
+
+.home-resumo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.home-resumo-card {
+    align-items: center;
+}
+
+.home-login {
+    margin-top: 1rem;
+    text-align: center;
+}

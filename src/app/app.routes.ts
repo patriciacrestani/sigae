@@ -1,12 +1,17 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './services/auth-guard.service';
-import { AgendaComponent } from './agenda/agenda/agenda.component';
+import { AgendaComponent } from './modules/agenda/agenda/agenda.component';
+import { AcessoNegadoComponent } from './modules/core/acesso-negado/acesso-negado.component';
+import { HomeComponent } from './modules/core/home/home.component';
 
 export const routes: Routes = [ 
     { 
         path: '', 
         component: HomeComponent 
+    },
+    { 
+        path: 'acesso-negado', 
+        component: AcessoNegadoComponent 
     },
     { 
         path: 'agenda', 
@@ -15,10 +20,10 @@ export const routes: Routes = [
     },
     { 
         path: 'pessoas', 
-        loadChildren: () => import('./pessoas/pessoas.module').then(m => m.PessoasModule)
+        loadChildren: () => import('./modules/pessoas/pessoas.module').then(m => m.PessoasModule)
     },
     { 
         path: 'plano-acao',
-        loadChildren: () => import('./plano-acao/plano-acao.module').then(m => m.PlanoAcaoModule)
+        loadChildren: () => import('./modules/plano-acao/plano-acao.module').then(m => m.PlanoAcaoModule)
     },
 ];

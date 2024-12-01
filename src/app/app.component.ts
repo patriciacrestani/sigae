@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { NavbarComponent } from './navbar/navbar.component';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { PrimeNGConfig } from 'primeng/api';
+import { NavbarComponent } from './modules/core/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +15,11 @@ export class AppComponent {
   title = 'sigae';
   
   constructor(
-    private primengConfig: PrimeNGConfig,
+    private route: ActivatedRoute,
+    private router: Router
   ) {  }
+
+  exibeNavBar() {
+    return !this.router.url.includes("acesso-negado");
+  }
 }
